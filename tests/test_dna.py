@@ -1,47 +1,17 @@
-import contextlib
 from io import StringIO
-from unittest import TestCase
-import sys
+from unittest import TestCase, mock
 
 from dna.dna import main
 
 
 class TestDNA(TestCase):
-    # def setUp(self) -> None:
-    #     self.temp_stdout = StringIO()
-    #     contextlib.redirect_stdout(self.temp_stdout)
 
-    # def getOutput(self):
-    #     return self.temp_stdout.getvalue().strip()
-
-    def test_output(self):
-        temp_stdout = StringIO()
-        contextlib.redirect_stdout(temp_stdout)
-        main()
-        output = temp_stdout.getvalue().strip()
-        self.assertEqual('hello', output)
-
-    def test_output_preserve(self):
-        temp_stdout = StringIO()
-        with contextlib.redirect_stdout(temp_stdout):
+    def get_output_from_main(self):
+        with mock.patch('sys.stdout', new=StringIO()) as fake_output:
             main()
-        output = temp_stdout.getvalue().strip()
+        output = fake_output.getvalue().strip()
+        return output
+
+    def test_output_that_is_hopefully_cleaner(self):
+        output = self.get_output_from_main()
         self.assertEqual('hello', output)
-
-    def test_the_test(self):
-        command_line_argument = 'this is a command line argument'
-        sys.argv.append(command_line_argument)
-
-        main()
-
-        print('here is the output:')
-        print(self.getOutput())
-        self.assertTrue(True)
-
-    def test_main(self):
-        temp_stdout = StringIO()
-
-        with contextlib.redirect_stdout(temp_stdout):
-            main()
-        output = temp_stdout.getvalue().strip()
-        self.assertEqual(output, 'Hello, world!')
