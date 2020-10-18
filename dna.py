@@ -1,9 +1,10 @@
-def main():
-    # print('hello')
+from sys import argv
 
-    print('Hello, world!')
+
+def main():
+    print('hello')
 
     return True
 
 
-main()
+print('dna.py has been run')
