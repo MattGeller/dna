@@ -6,7 +6,8 @@ from dna.dna import main
 
 class TestDNA(TestCase):
 
-    def get_output_from_main(self):
+    @staticmethod
+    def get_output_from_main():
         with mock.patch('sys.stdout', new=StringIO()) as fake_output:
             main()
         output = fake_output.getvalue().strip()
