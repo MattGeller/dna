@@ -2,7 +2,7 @@ from sys import argv
 
 
 def main():
-    print('hello')
+    print(argv[1] or 'No match')
 
     return True
 
