@@ -2,7 +2,7 @@ import sys
 from io import StringIO
 from unittest import TestCase, mock
 
-from dna.dna import main
+from dna.dna import main, populate_database
 
 
 class TestDNA(TestCase):
@@ -13,6 +13,11 @@ class TestDNA(TestCase):
             main()
         output = fake_output.getvalue().strip()
         return output
+
+    def test_reading_the_database(self):
+        database = populate_database('databases/small.csv')
+        expectation = {}
+        self.assertEqual(expectation, database)
 
     def test_output_that_is_hopefully_cleaner(self):
         output = self.get_output_from_main()
