@@ -1,5 +1,6 @@
 from sys import argv
 from csv import reader, DictReader
+import os
 
 
 def main():
@@ -12,7 +13,14 @@ def main():
 
 
 def populate_database(file_name):
-    database = dict()
+    with open(file_name) as file:
+
+        my_dict_reader = DictReader(file)
+        print('dict reader:')
+        for row in my_dict_reader:
+            print(row)
+
+        database = {}
 
     return database
 

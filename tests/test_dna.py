@@ -15,7 +15,7 @@ class TestDNA(TestCase):
         return output
 
     def test_reading_the_database(self):
-        database = populate_database('databases/small.csv')
+        database = populate_database('../databases/small.csv')
         expectation = {}
         self.assertEqual(expectation, database)
 
