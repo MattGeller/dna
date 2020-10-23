@@ -16,7 +16,22 @@ class TestDNA(TestCase):
 
     def test_reading_the_database(self):
         database = populate_database('../databases/small.csv')
-        expectation = {}
+        expectation = {
+            'AGATC': {
+                2: ['Alice'],
+                4: ['Bob'],
+                3: ['Charlie']
+            },
+            'AATG': {
+                8: ['Alice'],
+                1: ['Bob'],
+                2: ['Charlie']
+            },
+            'TATC': {
+                3: ['Alice'],
+                5: ['Bob', 'Charlie']
+            }
+        }
         self.assertEqual(expectation, database)
 
     def test_output_that_is_hopefully_cleaner(self):
