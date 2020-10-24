@@ -2,7 +2,7 @@ import sys
 from io import StringIO
 from unittest import TestCase, mock
 
-from dna.dna import main, populate_database
+from dna.dna import main, populate_database, count_matches
 
 
 class TestDNA(TestCase):
@@ -33,6 +33,15 @@ class TestDNA(TestCase):
             }
         }
         self.assertEqual(expectation, database)
+
+    def test_reading_sequence_1(self):
+        expectation = {
+            'AGATC': 4,
+            'AATG': 1,
+            'TATC': 5
+        }
+        result = count_matches('../sequences/1.txt')
+        self.assertEqual(expectation, result)
 
     def test_output_that_is_hopefully_cleaner(self):
         output = self.get_output_from_main()

@@ -34,4 +34,16 @@ def populate_database(file_name):
     return database
 
 
+def count_matches(file_name):
+    with open(file_name) as file:
+        full_sequence = file.read()
+    strs = ('AGATC', 'AATG', 'TATC')
+
+    matches = {}
+    for item in strs:
+        matches[item] = full_sequence.count(item)
+        
+    return matches
+
+
 print('dna.py has been run')
