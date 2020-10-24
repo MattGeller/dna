@@ -1,6 +1,7 @@
 from sys import argv
 from csv import reader, DictReader
 import os
+from collections import defaultdict
 
 
 def main():
@@ -14,13 +15,22 @@ def main():
 
 def populate_database(file_name):
     with open(file_name) as file:
-
+        database = {}
         my_dict_reader = DictReader(file)
-        print('dict reader:')
+
         for row in my_dict_reader:
             print(row)
+            name = row['name']
+            for key, number in row.items():
+                if key == 'name':
+                    continue
+                if key not in database:
+                    database[key] = defaultdict(list)
+                number = int(number)
+                database[key][number].append(name)
 
-        database = {}
+        for key, value in database.items():
+            database[key] = dict(value)
 
     return database
 
