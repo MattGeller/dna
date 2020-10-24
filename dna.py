@@ -19,7 +19,6 @@ def populate_database(file_name):
         my_dict_reader = DictReader(file)
 
         for row in my_dict_reader:
-            print(row)
             name = row['name']
             for key, number in row.items():
                 if key == 'name':
