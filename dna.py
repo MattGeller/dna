@@ -8,7 +8,24 @@ def main():
     if len(argv) < 3:
         print('Incorrect number of command-line arguments')
         exit()
-    print('No match')
+
+    matches = count_matches(argv[2])
+    database = populate_database(argv[1])
+
+    suspects = []
+
+    for sequence, number in matches.items():
+        if number in database[sequence]:
+            list_of_local_suspects = database[sequence][number]
+            if not suspects:
+                suspects = list_of_local_suspects
+            else:
+                suspects = list(set(suspects) & set(list_of_local_suspects))
+
+    if len(suspects) == 1:
+        print(suspects[0])
+    else:
+        print('No match')
 
     return True
 

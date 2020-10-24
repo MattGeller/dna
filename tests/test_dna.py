@@ -43,18 +43,18 @@ class TestDNA(TestCase):
         result = count_matches('../sequences/1.txt')
         self.assertEqual(expectation, result)
 
-    def test_output_that_is_hopefully_cleaner(self):
-        output = self.get_output_from_main()
-        self.assertEqual('hello', output)
-
-    def test_everything(self):
-        command_line_argument = 'Bob'
-        sys.argv.append(command_line_argument)
-        output = self.get_output_from_main()
-        self.assertEqual(command_line_argument, output)
+    # def test_output_that_is_hopefully_cleaner(self):
+    #     output = self.get_output_from_main()
+    #     self.assertEqual('hello', output)
+    #
+    # def test_everything(self):
+    #     command_line_argument = 'Bob'
+    #     sys.argv.append(command_line_argument)
+    #     output = self.get_output_from_main()
+    #     self.assertEqual(command_line_argument, output)
 
     def test_sequence_1_is_bob(self):
-        sys.argv.extend(['databases/small.csv', 'sequences/1.txt'])
+        sys.argv.extend(['../databases/small.csv', '../sequences/1.txt'])
         output = self.get_output_from_main()
         self.assertEqual('Bob', output)
 
