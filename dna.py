@@ -20,13 +20,13 @@ def populate_database(file_name):
 
         for row in my_dict_reader:
             name = row['name']
-            for key, number in row.items():
-                if key == 'name':
+            for sequence, number in row.items():
+                if sequence == 'name':
                     continue
-                if key not in database:
-                    database[key] = defaultdict(list)
+                if sequence not in database:
+                    database[sequence] = defaultdict(list)
                 number = int(number)
-                database[key][number].append(name)
+                database[sequence][number].append(name)
 
         for key, value in database.items():
             database[key] = dict(value)
