@@ -21,6 +21,9 @@ def main():
                 suspects = list_of_local_suspects
             else:
                 suspects = list(set(suspects) & set(list_of_local_suspects))
+        else:
+            print('No match')
+            return False
 
     if len(suspects) == 1:
         print(suspects[0])
