@@ -9,8 +9,8 @@ def main():
         print('Incorrect number of command-line arguments')
         exit()
 
-    matches = count_matches(argv[2])
     database = populate_database(argv[1])
+    matches = count_matches(argv[2])
 
     suspects = []
 
