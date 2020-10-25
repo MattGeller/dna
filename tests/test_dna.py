@@ -40,7 +40,16 @@ class TestDNA(TestCase):
             'AATG': 1,
             'TATC': 5
         }
-        result = count_matches('../sequences/1.txt')
+        result = count_matches('../sequences/1.txt', ('AGATC', 'AATG', 'TATC'))
+        self.assertEqual(expectation, result)
+
+    def test_reading_sequence_2(self):
+        expectation = {
+            'AGATC': 0,
+            'AATG': 1,
+            'TATC': 0
+        }
+        result = count_matches('../sequences/2.txt', ('AGATC', 'AATG', 'TATC'))
         self.assertEqual(expectation, result)
 
     # def test_output_that_is_hopefully_cleaner(self):
