@@ -10,7 +10,7 @@ def main():
         exit()
 
     database = populate_database(argv[1])
-    matches = count_matches(argv[2])
+    matches = count_matches(argv[2], tuple(database))
 
     suspects = []
 
@@ -54,15 +54,14 @@ def populate_database(file_name):
     return database
 
 
-def count_matches(file_name):
+def count_matches(file_name, strs):
     with open(file_name) as file:
         full_sequence = file.read()
-    strs = ('AGATC', 'AATG', 'TATC')
 
     matches = {}
     for item in strs:
         matches[item] = full_sequence.count(item)
-        
+
     return matches
 
 
