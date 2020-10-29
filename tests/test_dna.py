@@ -1,6 +1,7 @@
 import sys
 from io import StringIO
 from unittest import TestCase, mock
+import re
 
 from dna.dna import main, populate_database, count_matches
 
@@ -42,6 +43,15 @@ class TestDNA(TestCase):
         }
         result = count_matches('../sequences/1.txt', ('AGATC', 'AATG', 'TATC'))
         self.assertEqual(expectation, result)
+
+    def test_regex(self):
+
+        full_sequence = 'sometextasdfasdfdassadfasdfsometextsometextsometext'
+
+        result = re.findall('(sometext)+', full_sequence)
+
+        print(result)
+
 
     def test_reading_sequence_2(self):
         expectation = {
