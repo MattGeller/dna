@@ -46,7 +46,7 @@ class TestDNA(TestCase):
 
     def test_regex(self):
 
-        full_sequence = 'sometextasdfasdfdassadfasdfsometextsometextsometext'
+        full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
 
         result = re.findall('(sometext)+', full_sequence)
 
