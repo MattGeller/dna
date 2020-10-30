@@ -48,7 +48,7 @@ class TestDNA(TestCase):
 
         full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
 
-        result = re.findall('((sometext)+)', full_sequence)
+        result = re.findall('(?:sometext)+', full_sequence)
 
         print(result)
 
