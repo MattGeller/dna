@@ -1,6 +1,7 @@
 from sys import argv
 from csv import reader, DictReader
 import os
+import re
 from collections import defaultdict
 
 
@@ -60,7 +61,21 @@ def count_matches(file_name, strs):
 
     matches = {}
     for item in strs:
-        matches[item] = full_sequence.count(item)
+        pattern = f'(?:{item})+'
+        result = re.findall(pattern, full_sequence)
+
+        # print('result:', result)
+
+        # longest_string = max(result, key=len)
+        result = list(map(len, result))
+
+        if not result:
+            matches[item] = 0
+
+        else:
+            number_of_repetitions = max(result) / len(item)
+
+            matches[item] = number_of_repetitions
 
     return matches
 

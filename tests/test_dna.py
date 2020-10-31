@@ -45,13 +45,11 @@ class TestDNA(TestCase):
         self.assertEqual(expectation, result)
 
     def test_regex(self):
-
         full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
 
         result = re.findall('(?:sometext)+', full_sequence)
 
         print(result)
-
 
     def test_reading_sequence_2(self):
         expectation = {
@@ -60,6 +58,15 @@ class TestDNA(TestCase):
             'TATC': 0
         }
         result = count_matches('../sequences/2.txt', ('AGATC', 'AATG', 'TATC'))
+        self.assertEqual(expectation, result)
+
+    def test_reading_sequence_3(self):
+        expectation = {
+            'AGATC': 3,
+            'AATG': 3,
+            'TATC': 5
+        }
+        result = count_matches('../sequences/3.txt', ('AGATC', 'AATG', 'TATC'))
         self.assertEqual(expectation, result)
 
     # def test_output_that_is_hopefully_cleaner(self):
