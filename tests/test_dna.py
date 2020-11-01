@@ -1,7 +1,7 @@
+import re
 import sys
 from io import StringIO
 from unittest import TestCase, mock
-import re
 
 from dna.dna import main, populate_database, count_matches
 
@@ -14,6 +14,13 @@ class TestDNA(TestCase):
             main()
         output = fake_output.getvalue().strip()
         return output
+
+    def test_regex(self):
+        full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
+
+        result = re.findall('(?:sometext)+', full_sequence)
+
+        print(result)
 
     def test_reading_the_database(self):
         database = populate_database('../databases/small.csv')
@@ -44,13 +51,6 @@ class TestDNA(TestCase):
         result = count_matches('../sequences/1.txt', ('AGATC', 'AATG', 'TATC'))
         self.assertEqual(expectation, result)
 
-    def test_regex(self):
-        full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
-
-        result = re.findall('(?:sometext)+', full_sequence)
-
-        print(result)
-
     def test_reading_sequence_2(self):
         expectation = {
             'AGATC': 0,
@@ -68,16 +68,6 @@ class TestDNA(TestCase):
         }
         result = count_matches('../sequences/3.txt', ('AGATC', 'AATG', 'TATC'))
         self.assertEqual(expectation, result)
-
-    # def test_output_that_is_hopefully_cleaner(self):
-    #     output = self.get_output_from_main()
-    #     self.assertEqual('hello', output)
-    #
-    # def test_everything(self):
-    #     command_line_argument = 'Bob'
-    #     sys.argv.append(command_line_argument)
-    #     output = self.get_output_from_main()
-    #     self.assertEqual(command_line_argument, output)
 
     def test_sequence_1_is_bob(self):
         sys.argv.extend(['../databases/small.csv', '../sequences/1.txt'])
