@@ -1,8 +1,7 @@
-from sys import argv
-from csv import reader, DictReader
-import os
 import re
 from collections import defaultdict
+from csv import DictReader
+from sys import argv
 
 
 def main():
@@ -64,9 +63,6 @@ def count_matches(file_name, strs):
         pattern = f'(?:{item})+'
         result = re.findall(pattern, full_sequence)
 
-        # print('result:', result)
-
-        # longest_string = max(result, key=len)
         result = list(map(len, result))
 
         if not result:
