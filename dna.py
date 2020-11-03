@@ -2,15 +2,22 @@ import re
 from collections import defaultdict
 from csv import DictReader
 from sys import argv
-
+import pprint
 
 def main():
     if len(argv) < 3:
         print('Incorrect number of command-line arguments')
         exit()
 
+    printer = pprint.PrettyPrinter()
+
     database = populate_database(argv[1])
+    print('database:')
+    printer.pprint(database)
+
     matches = count_matches(argv[2], tuple(database))
+    print('matches:')
+    printer.pprint(matches)
 
     suspects = []
 
