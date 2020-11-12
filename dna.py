@@ -12,12 +12,12 @@ def main():
     printer = pprint.PrettyPrinter()
 
     database = populate_database(argv[1])
-    print('database:')
-    printer.pprint(database)
+    # print('database:')
+    # printer.pprint(database)
 
     matches = count_matches(argv[2], tuple(database))
-    print('matches:')
-    printer.pprint(matches)
+    # print('matches:')
+    # printer.pprint(matches)
 
     suspects = []
 
@@ -41,6 +41,7 @@ def main():
 
 
 def populate_database(file_name):
+    print('building a database using', file_name)
     with open(file_name) as file:
         database = {}
         my_dict_reader = DictReader(file)
@@ -62,6 +63,9 @@ def populate_database(file_name):
 
 
 def count_matches(file_name, strs):
+
+    print('counting matches in', file_name)
+
     with open(file_name) as file:
         full_sequence = file.read()
 
