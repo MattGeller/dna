@@ -11,6 +11,11 @@ def main():
 
     printer = pprint.PrettyPrinter()
 
+    print('argv[1] is', argv[1])
+    print('argv[2] is', argv[2])
+    print('argv is:')
+    printer.pprint(argv)
+
     database = populate_database(argv[1])
     # print('database:')
     # printer.pprint(database)
