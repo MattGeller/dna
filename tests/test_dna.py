@@ -15,6 +15,10 @@ class TestDNA(TestCase):
         output = fake_output.getvalue().strip()
         return output
 
+    def tearDown(self) -> None:
+        sys.argv.pop()
+        sys.argv.pop()
+
     def test_sequence_1_is_bob(self):
         sys.argv.extend(['../databases/small.csv', '../sequences/1.txt'])
         output = self.get_output_from_main()
