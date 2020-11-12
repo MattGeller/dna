@@ -15,6 +15,11 @@ class TestDNA(TestCase):
         output = fake_output.getvalue().strip()
         return output
 
+    def tearDown(self) -> None:
+        if len(sys.argv) >= 3:
+            sys.argv.pop()
+            sys.argv.pop()
+
     def test_regex(self):
         full_sequence = 'sometextqwertyuiopasdfghjklsometextsometextsometext'
 
