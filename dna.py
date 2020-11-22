@@ -74,3 +74,6 @@ def count_matches(file_name, strs):
             matches[item] = number_of_repetitions
 
     return matches
+
+
+main()
